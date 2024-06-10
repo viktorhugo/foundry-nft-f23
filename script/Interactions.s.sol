@@ -9,7 +9,7 @@ import { BasicNFT } from "../src/BasicNFT.sol";
 
 contract MintBasicNft is Script{
 
-    string public constant CAPY = "ipfs://bafybeig37ioir76s7mg5oobetncojcm3c3hxasyd4rvid4jqhy4gkaheg4/?filename=0-PUG.json";
+    string public constant CAPY_URI = "ipfs://bafybeig37ioir76s7mg5oobetncojcm3c3hxasyd4rvid4jqhy4gkaheg4/?filename=0-PUG.json";
 
     function run() external {
         // simpre queremos trabajar con en NFT  mas reciente implementado
@@ -20,8 +20,8 @@ contract MintBasicNft is Script{
 
     function mintNftOnContract(address contractAddress) public {
         vm.startBroadcast();
-        BasicNFT(contractAddress).mintNFT(CAPY);
-        vm.startBroadcast();
+        BasicNFT(contractAddress).mintNFT(CAPY_URI);
+        vm.stopBroadcast();
     }
 
 }
