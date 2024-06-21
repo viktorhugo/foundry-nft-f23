@@ -22,7 +22,7 @@
 // SPDX-License-Identifier: SEE LICENSE IN LICENSE
 pragma solidity ^0.8.25;
 
-import {ERC721, _isAuthorized} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import {Base64} from "@openzeppelin/contracts/utils/Base64.sol"; // para doficicar
 
 contract MoodNFT is ERC721 {
@@ -55,7 +55,7 @@ contract MoodNFT is ERC721 {
 
     function flipMood(uint256 tokenId) public {
         // only the owner can change the mood
-        if (!_isAuthorized(msg.sender, tokenId)) {
+        if (_isAuthorized(_ownerOf(tokenId), msg.sender, tokenId)) {
             revert MoodNFT__CantFlipMoodIfNotOwner();
         }
 
